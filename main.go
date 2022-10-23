@@ -28,13 +28,15 @@ func main() {
 
 			
 		case "GET":
-						//ISSUE: Create a GET request to get all todos
+			// GET Function
+			rw.WriteHeader(http.StatusOK)
+			json.NewEncoder(rw).Encode(todos)
 		case "POST":
 
 			//ISSUE: Create a POST request to add a new todo
 			
 		case "DELETE":
-			//TODO: Create a DELETE request to delete a todo
+			// Create a DELETE request 
 			for index, todo := range todos {
 				if todo.ID == id {
 					todos = append(todos[:index], todos[index+1:]...)
