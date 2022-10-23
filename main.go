@@ -34,7 +34,14 @@ func main() {
 			//ISSUE: Create a POST request to add a new todo
 			
 		case "DELETE":
-			  //ISSUE: Create a DELETE request to delete a todo
+			//TODO: Create a DELETE request to delete a todo
+			for index, todo := range todos {
+				if todo.ID == id {
+					todos = append(todos[:index], todos[index+1:]...)
+					rw.WriteHeader(http.StatusOK)
+					rw.Write([]byte(`{"message": "Success to delete todo"}`))
+				}
+			}
 		case "PUT":
 			//ISSUE: Create a PUT request to update a todo
 		}
