@@ -32,9 +32,12 @@ func main() {
 			rw.WriteHeader(http.StatusOK)
 			json.NewEncoder(rw).Encode(todos)
 		case "POST":
-
-			//ISSUE: Create a POST request to add a new todo
-			
+			// POST Function
+			var todo Todo
+			json.NewDecoder(r.Body).Decode(&todo)
+			todos = append(todos, todo)
+			rw.WriteHeader(http.StatusOK)
+			json.NewEncoder(rw).Encode(todo)
 		case "DELETE":
 			// Create a DELETE request 
 			for index, todo := range todos {
