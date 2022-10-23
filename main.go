@@ -48,7 +48,16 @@ func main() {
 				}
 			}
 		case "PUT":
-			//ISSUE: Create a PUT request to update a todo
+			// Create a PUT request
+			for index, todo := range todos {
+				if todo.ID == id {
+					json.NewDecoder(r.Body).Decode(&todo)
+					todos[index].ID = todo.ID
+					todos[index].Task = todo.Task
+					rw.WriteHeader(http.StatusOK)
+					rw.Write([]byte(`{"message": "Success to update todo"}`))
+				}
+			}
 		}
 	})
 	log.Fatal(http.ListenAndServe(":8000", nil))
